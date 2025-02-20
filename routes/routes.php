@@ -10,14 +10,19 @@ $uriSegments = explode('/', parse_url($uri, PHP_URL_PATH));
 $dbConnection = (new Database())->getConnection();
 $controller = new ExampleController($dbConnection);
 
-if ($uriSegments[1] === 'example') {
+if ($uriSegments[1] === 'example') 
+{
     $id = isset($uriSegments[2]) ? intval($uriSegments[2]) : null;
 
-    switch ($requestMethod) {
+    switch ($requestMethod) 
+    {
         case 'GET':
-            if ($id) {
+            if ($id) 
+            {
                 $response = $controller->get($id);
-            } else {
+            } 
+            else 
+            {
                 $response = $controller->getAll();
             }
             break;
@@ -25,16 +30,21 @@ if ($uriSegments[1] === 'example') {
             $response = $controller->create();
             break;
         case 'PUT':
-            if ($id) {
+            if ($id) 
+            {
                 $response = $controller->update($id);
-            } else {
+            } 
+            else {
                 $response = ['status' => 'error', 'message' => 'Invalid example ID'];
             }
             break;
         case 'DELETE':
-            if ($id) {
+            if ($id) 
+            {
                 $response = $controller->delete($id);
-            } else {
+            } 
+            else 
+            {
                 $response = ['status' => 'error', 'message' => 'Invalid example ID'];
             }
             break;
@@ -47,6 +57,20 @@ if ($uriSegments[1] === 'example') {
 }
 
 header('Content-Type: application/json');
+
+// CORS
+header("Access-Control-Allow-Origin: *");
+
+header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
+
+header("Access-Control-Allow-Headers: Content-Type, Authorization, X-Requested-With");
+
+if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') 
+{
+    http_response_code(200);
+    exit;
+}
+
 echo json_encode($response);
 
 ?>

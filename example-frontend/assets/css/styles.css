@@ -1,0 +1,73 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.header {
+    background: #440245;
+    height: 70px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.form {
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+}
+
+.input {
+    border: 0;
+    padding: 0.5rem;
+    border-radius: 0.6rem;
+    text-align: center;
+}
+
+.input:focus {
+    outline: none;
+}
+
+.form > button {
+    cursor: pointer;
+    background: white;
+    color: black;
+    border: 0;
+    border-radius: 0.6rem;
+    padding: 0.5rem;
+    font-weight: 600;
+}
+
+.form > button:hover {
+    background: rgb(218, 218, 218);
+}
+
+.container {
+    padding: 1rem;
+    width: 100%;
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.registers {
+    list-style: none;
+    border: 1px solid;
+    padding: 2rem;
+}
+
+.item {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 2rem;
+}
+
+.item > p:not(:first-child){
+    cursor: pointer;
+    color: red;
+}

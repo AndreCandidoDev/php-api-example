@@ -1,19 +1,23 @@
 <?php
 
-class ExampleModel {
+class ExampleModel 
+{
     private $conn;
     
-    public function __construct($dbConnection) {
+    public function __construct($dbConnection) 
+	{
         $this->conn = $dbConnection;
     }
 
-    public function getAll() {
+    public function getAll() 
+	{
         $query = "SELECT * FROM examples";
         $result = $this->conn->query($query);
         return $result;
     }
 
-    public function get($id) {
+    public function get($id) 
+	{
         $query = "SELECT * FROM examples WHERE id = ?";
         $stmt = $this->conn->prepare($query);
         $stmt->bind_param('i', $id);
@@ -22,38 +26,50 @@ class ExampleModel {
         return $result;
     }
 
-    public function create($data) {
+    public function create($data) 
+	{
 		$query = "INSERT INTO examples (name, description) VALUES (?, ?)";
 		$stmt = $this->conn->prepare($query);
 		$stmt->bind_param('ss', $data['name'], $data['description']);
 
-		if ($stmt->execute()) {
+		if ($stmt->execute()) 
+		{
 			return ['status' => 'success', 'message' => 'Foi criado com sucesso'];
-		} else {
+		} 
+		else 
+		{
 			return ['status' => 'error', 'message' => 'Erro ao criar'];
 		}
 	}
 
-	public function update($id, $data) {
+	public function update($id, $data)
+	{
 		$query = "UPDATE examples SET name = ?, description = ? WHERE id = ?";
 		$stmt = $this->conn->prepare($query);
 		$stmt->bind_param('ssi', $data['name'], $data['description'], $id);
 
-		if ($stmt->execute()) {
+		if ($stmt->execute()) 
+		{
 			return ['status' => 'success', 'message' => 'Foi atualizado com sucesso'];
-		} else {
+		} 
+		else 
+		{
 			return ['status' => 'error', 'message' => 'Erro ao atualizar'];
 		}
 	}
 
-	public function delete($id) {
+	public function delete($id) 
+	{
 		$query = "DELETE FROM examples WHERE id = ?";
 		$stmt = $this->conn->prepare($query);
 		$stmt->bind_param('i', $id);
 
-		if ($stmt->execute()) {
+		if ($stmt->execute()) 
+		{
 			return ['status' => 'success', 'message' => 'Foi deletado com sucesso'];
-		} else {
+		} 
+		else 
+		{
 			return ['status' => 'error', 'message' => 'Erro ao deletar'];
 		}
 	}
